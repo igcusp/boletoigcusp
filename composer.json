@@ -1,0 +1,6 @@
+{
+    "require": {
+        "uspdev/boleto": "^1.0",
+        "google/recaptcha": "^1.2"
+    }
+}

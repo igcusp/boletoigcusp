@@ -1,0 +1,19 @@
+/vendor/
+*~
+*.swp
+src/replicado_queries
+composer.lock
+
+.idea
+
+config.php
+
+# test
+test.php
+log.log
+credentials.php
+php.php
+
+# netbeans
+nbproject/
+/nbproject/private/
