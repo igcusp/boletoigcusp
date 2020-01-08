@@ -1,6 +1,6 @@
-<?php
+<?php 
 
-namespace Boleto\USP;
+namespace Boleto\USP; 
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Uspdev\Boleto;
@@ -50,18 +50,25 @@ $data = array(
         . "<br>### Não receber após o vencimento."
         . "<br>### Pague com o app de seu banco! \n\n "
 );
-?><pre><?php print_r($data);die(); ?></pre><?php
+print_r($data);
 /* O método gerar() retorna um array com dois indices:
    status: true ou false indicando se o boleto foi ou não gerado
    value: o id do boleto gerado ou a mensagem de erro 
 */
 // gerar
 $r = $boleto->gerar($data);
-if($r['status']) echo $r['value'];
+if(!$r['status']) {
+    echo 'Erro : ' . $r['value'];
+    die();
+}
+else {
+    $boleto->obter($r['value']);
+}
 
 // situação
-print_r($boleto->situacao($r['value']));
+//print_r($boleto->situacao($r['value']));
 
 // obter o PDF:
 // $boleto->obter($r['value']);
 
+?>
