@@ -7,6 +7,7 @@ composer.lock
 .idea
 
 config.php
+areas.php
 
 # test
 test.php
