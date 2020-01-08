@@ -14,3 +14,8 @@ define('ESTRUTURA_HIERARQUICA', 'zzz');
 define('VALOR_MESTRADO',30);
 define('VALOR_DOUTORADO',50);
 define('VALOR_ESPECIAL',20);
+
+//personalização da página
+define(TITLEPAGINA, 'IGc-USP :: Gerador de Boletos');
+define(LOGOTIPO, 'logo_IGc_colorido.png');
+define(LOGOW, '400px');

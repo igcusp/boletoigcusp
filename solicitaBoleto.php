@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<?php 
+require_once 'config.php'; 
+require_once 'areas.php'; 
+?>
   <head>
     <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8">
@@ -8,22 +12,25 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>IGc-USP :: Gerador de Boletos</title>
+    <title><?php echo TITLEPAGINA; ?></title>
   </head>
+  
+
+  
   <body class="bg-secondary pt-1">
     
       <div class="container bg-white p-3">
       
           <nav class="navbar navbar-light bg-white">
-              <img src="logo_IGc_colorido.png" class="img-fluid mx-auto d-block" width="400px">
+              <img src="<?php echo LOGOTIPO; ?>" class="img-fluid mx-auto d-block" width="<?php echo LOGOW; ?>">
           </nav>
           
-          <h3>Pós-Graduação - IGc-USP</h3>
-          <h2>Inscrição Aluno Especial</h2>
+          <h4>Sistema Gerador de Boletos</h4>
+          <h3><?php echo TITULO; ?></h3>
           
-          <form method="post" action="geraBoleto.php" class="mt-5">
+          <form method="post" action="geraBoleto.php?b=<?php echo $b; ?>" class="mt-5">
               <div class="form-group">
-                  <label for="tipoSacado">Pessoa Física ou Jurídica??</label>
+                  <label for="tipoSacado">Pessoa Física ou Jurídica?</label>
                   <select id="tipoSacado" name="tipoSacado" class="custom-select">
                       <option value="PF" selected>Pessoa Física</option>
                       <option value="PJ">Pessoa Jurídica</option>
@@ -42,7 +49,7 @@
                   <input type="email" class="form-control" id="codigoEmail" name="codigoEmail" placeholder="nome@examplo.com">
               </div>
               <button type="submit" class="btn btn-primary mt-2">Gerar boleto</button>
-              <input type="hidden" id="inscricaoPara" name="inscricaoPara" value="MESTRADO">
+              <!--<input type="hidden" id="b" name="b" value="<?php echo $b; ?>">-->
           </form>
       
       </div>
