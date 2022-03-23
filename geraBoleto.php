@@ -8,29 +8,36 @@ use Uspdev\Boleto;
 require_once 'config.php'; 
 require_once 'areas.php'; 
 
-$boleto = new Boleto(USERNAME_WSDL,PASSWORD_WSDL,URL_WSDL);
+$boleto = new Boleto(USERNAME_WSDL,PASSWORD_WSDL,$dev);
 
 $tipoSacado = filter_input(INPUT_POST, 'tipoSacado');
 $nomeSacado = filter_input(INPUT_POST, 'nomeSacado');
 $cpfCnpj = filter_input(INPUT_POST, 'cpfCnpj');
 $codigoEmail = filter_input(INPUT_POST, 'codigoEmail');
+if (VALOR==0){ // obtém valor digitado do formulário
+    $valor = filter_input(INPUT_POST, 'valor');
+    $valor = str_replace(',', '.', $valor);
+
+    
+}
+else { // obtém valor pré-definido
+    $valor = VALOR;
+}
+$descritivo = filter_input(INPUT_POST, 'descritivo');
 
 //array com campos mínimos para geração do boleto
 $data = array(
     'codigoUnidadeDespesa' => UNIDADE,
     'codigoFonteRecurso' => FONTE_RECURSO,
     'estruturaHierarquica' => ESTRUTURA_HIERARQUICA,     
-    'dataVencimentoBoleto' => date('d/m/Y', strtotime('+2 days')), 
-    'valorDocumento' => VALOR,
+    'dataVencimentoBoleto' => VENCIMENTO, 
+    'valorDocumento' => $valor,
     'tipoSacado' => $tipoSacado, 
     'cpfCnpj' => $cpfCnpj, 
     'nomeSacado' => $nomeSacado,
     'codigoEmail' => $codigoEmail,  
-    'informacoesBoletoSacado' => TITULO,
-    'instrucoesObjetoCobranca' => 
-        "### COBRANÇA REGISTRADA: Não pagar no dia da emissão! Apenas no próximo dia útil!!!"
-        . "<br>### Não receber após o vencimento."
-        . "<br>### Pague com o app de seu banco! \n\n "
+    'informacoesBoletoSacado' => $descritivo,
+    'instrucoesObjetoCobranca' => $instrucoesObjetoCobranca
 );
 
 /* O método gerar() retorna um array com dois indices:
@@ -44,5 +51,10 @@ if(!$r['status']) {
     die();
 }
 else {
-    $boleto->obter($r['value']);
+    $obter = $boleto->obter($r['value']);
+    
+    //redirecionando os dados binarios do pdf para o browser
+    header('Content-type: application/pdf'); 
+    header('Content-Disposition: attachment; filename="boleto.pdf"'); 
+    echo base64_decode($obter['value']);
 }

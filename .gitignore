@@ -1,3 +1,7 @@
+config.php
+areas.php
+links.php
+
 /vendor/
 *~
 *.swp
@@ -5,9 +9,6 @@ src/replicado_queries
 composer.lock
 
 .idea
-
-config.php
-areas.php
 
 # test
 test.php

@@ -23,12 +23,12 @@ require_once 'areas.php';
       
           <nav class="navbar navbar-light bg-white">
               <img src="<?php echo LOGOTIPO; ?>" class="img-fluid mx-auto d-block" width="<?php echo LOGOW; ?>">
+              <h4  class="img-fluid mx-auto d-block">Gerador de Boletos</h4>
           </nav>
           
-          <h4>Sistema Gerador de Boletos</h4>
-          <h3><?php echo TITULO; ?></h3>
+          <h1 class="text-center display-6"><?php echo TITULO; ?></h1>
           
-          <form method="post" action="geraBoleto.php?b=<?php echo $b; ?>" class="mt-5">
+          <form autocomplete="off" method="post" action="geraBoleto.php?b=<?php echo $b; ?>" class="mt-5">
               <div class="form-group">
                   <label for="tipoSacado">Pessoa Física ou Jurídica?</label>
                   <select id="tipoSacado" name="tipoSacado" class="custom-select">
@@ -48,9 +48,32 @@ require_once 'areas.php';
                   <label for="codigoEmail">Email address</label>
                   <input type="email" class="form-control" id="codigoEmail" name="codigoEmail" placeholder="nome@examplo.com">
               </div>
+              <?php
+              if (VALOR==0){
+                echo '   
+                    <div class="form-group">
+                        <label for="valor">Valor a pagar</label>
+                        <input type="text" class="form-control" id="valor" name="valor" placeholder="Digite aqui o valor">
+                    </div>
+                    <div class="form-group">
+                        <label for="descritivo">Descritivo</label>
+                        <input type="text" class="form-control" id="descritivo" name="descritivo" placeholder="Descreva os itens adquiridos" value="' . DESCRITIVO . '">
+                    </div>
+                    ';
+              }
+              else {
+                echo '   
+                        <input type="hidden" id="valor" name="valor" value="' . VALOR . '">
+                        <input type="hidden" id="descritivo" name="descritivo"  value="' . DESCRITIVO . '">
+                    ';
+              }
+              
+              ?>
+              
               <button type="submit" class="btn btn-primary mt-2">Gerar boleto</button>
               <!--<input type="hidden" id="b" name="b" value="<?php echo $b; ?>">-->
           </form>
+          
       
       </div>
       
