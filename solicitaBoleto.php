@@ -12,7 +12,7 @@ require_once 'areas.php';
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title><?php echo TITLEPAGINA; ?></title>
+    <title><?php echo 'TITLEPAGINA'; ?></title>
   </head>
   
 
@@ -22,11 +22,11 @@ require_once 'areas.php';
       <div class="container bg-white p-3">
       
           <nav class="navbar navbar-light bg-white">
-              <img src="<?php echo LOGOTIPO; ?>" class="img-fluid mx-auto d-block" width="<?php echo LOGOW; ?>">
+              <img src="<?php echo 'LOGOTIPO'; ?>" class="img-fluid mx-auto d-block" width="<?php echo LOGOW; ?>">
               <h4  class="img-fluid mx-auto d-block">Gerador de Boletos</h4>
           </nav>
           
-          <h1 class="text-center display-6"><?php echo TITULO; ?></h1>
+          <h1 class="text-center display-6"><?php echo 'TITULO'; ?></h1>
           
           <form autocomplete="off" method="post" action="geraBoleto.php?b=<?php echo $b; ?>" class="mt-5">
               <div class="form-group">
@@ -49,7 +49,7 @@ require_once 'areas.php';
                   <input type="email" class="form-control" id="codigoEmail" name="codigoEmail" placeholder="nome@examplo.com">
               </div>
               <?php
-              if (VALOR==0){
+              if ('VALOR'==0){
                 echo '   
                     <div class="form-group">
                         <label for="valor">Valor a pagar</label>
@@ -63,8 +63,8 @@ require_once 'areas.php';
               }
               else {
                 echo '   
-                        <input type="hidden" id="valor" name="valor" value="' . VALOR . '">
-                        <input type="hidden" id="descritivo" name="descritivo"  value="' . DESCRITIVO . '">
+                        <input type="hidden" id="valor" name="valor" value="' . 'VALOR' . '">
+                        <input type="hidden" id="descritivo" name="descritivo"  value="' . 'DESCRITIVO' . '">
                     ';
               }
               
